@@ -1,0 +1,17 @@
+product-sles15sp1-pool
+product-sles15sp1-update
+basesystem_module-sle15sp1-pool
+basesystem_module-sle15sp1-update
+serverapplication_module-sle15sp1-pool
+serverapplication_module-sle15sp1-update
+containers_module-sle15sp1-pool
+containers_module-sles15sp1-update
+captools_module-sle15sp1-pool
+captools_module-sles15sp1-update
+desktopapp_module-sle15sp1-pool
+desktopapp_module-sles15sp1-update
+devtools_module-sle15sp1-pool
+devtools_module-sles15sp1-update
+caasp4-pool
+caasp4-update
+|
