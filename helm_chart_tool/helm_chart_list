@@ -1,0 +1,4 @@
+  # This is helm chart list
+# <Repo name>/<Chart name> <Chart Version>
+stable/kubernetes-dashboard 0.6.1
+stable/heapster 0.2.7
