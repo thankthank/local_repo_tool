@@ -3,7 +3,7 @@
 source /usr/lib/my_lib;
 
 # User configuration
-#LOCAL_REPO="/root/admin/local_helm_repo"
+#LOCAL_REPO="/root/admin/helm_local_repo"
 #HELM_TOOL="/root/admin/helm_chart_tool"
 LOCAL_REPO=$2
 HELM_TOOL=$1
@@ -40,6 +40,7 @@ if($0~/^ *image: .*/){
 		gsub(/registry\.suse\.com/,"www.changeme.com",$2)
 		gsub(/k8s\.gcr\.io/,"www.changeme.com",$2)
 		gsub(/gcr\.io/,"www.changeme.com",$2)
+		gsub(/quay\.io/,"www.changeme.com",$2)
 		print $1": \""$2"\"";
 	}
 	else{
@@ -54,6 +55,7 @@ else if ($0~/^ *repository: .*/){
 		gsub(/registry\.suse\.com/,"www.changeme.com",$2)
 		gsub(/k8s\.gcr\.io/,"www.changeme.com",$2)
 		gsub(/gcr\.io/,"www.changeme.com",$2)
+		gsub(/quay\.io/,"www.changeme.com",$2)
 		print $1": \""$2"\"";
 	}
 	else{
