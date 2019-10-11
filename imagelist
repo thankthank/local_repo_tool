@@ -29,8 +29,9 @@
 #jimmidyson/configmap-reload:v0.2.2
 #prom/prometheus:v2.11.1
 #prom/alertmanager:v0.18.0
-#jimmidyson/configmap-reload:v0.2.2
 #quay.io/coreos/kube-state-metrics:v1.6.0
 #busybox:1.30
-kiwigrid/k8s-sidecar:0.1.20
-appropriate/curl:latest
+#kiwigrid/k8s-sidecar:0.1.20
+#appropriate/curl:latest
+#registry.suse.com/caasp/v4/rsyslog:8.39.0
+robbert229/rsyslog:latest

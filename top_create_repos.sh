@@ -197,7 +197,7 @@ Debug ssh $HELM_MIRROR_SERVER $HELM_TOOL/mirror_helm_charts.sh $HELM_TOOL $HELM_
 #Create_CaaSP4
 #Create_SES6
 #Mirror_helm_chart 192.168.37.14 /root/admin/helm_chart_tool /root/admin/helm_local_repo 192.168.37.17
-# Before running mirror images, merge the helm image list in $SW_DIR/helm_local_repo. Because some times helm-mirror is not able to get image name from tgz chart file.
+## Before running mirror images, merge the helm image list in $SW_DIR/helm_local_repo. Because some times helm-mirror is not able to get image name from tgz chart file.
 Mirror_images_in_Local_registry
 #Additional_task
 #Last_task

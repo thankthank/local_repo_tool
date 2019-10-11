@@ -5,3 +5,4 @@ stable/kubernetes-dashboard 0.6.1
 stable/nginx-ingress 1.23.0
 stable/prometheus 9.1.1
 stable/grafana 3.8.15
+suse-charts/log-agent-rsyslog 1.0.1
