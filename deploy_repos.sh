@@ -10,7 +10,7 @@ systemctl enable vsftpd;
 
 #Deploy all tar ball in this directory
 ls -al |grep $tar.gz | awk '{
-print "tar xvfz "$9" -C /srv/ftp"
+print "tar xvfz "$9" -C /srv/ftp --overwrite"
 }' | bash
 
 echo;echo;
@@ -30,9 +30,9 @@ then
         	cat ./created_repo_list
         	echo;echo;
 
-        	echo "Do you want to quit and modify repository files : yes"
+        	echo "Do you want to continue? (yes/no)"
         	read ANSWER
-        	if [[ $ANSWER == "yes" ]]
+        	if [[ $ANSWER == "no" ]]
         	then
                 	exit 1;
         	fi

@@ -19,9 +19,10 @@ then
 	cat ./created_repo_list
 	echo;echo;
 
-	echo "Do you want to quit and modify repository files : yes"
+	echo "Do you want to continue?" 
+	echo "If you don't want to continue, input no and press enter key : yes/no"
 	read ANSWER
-	if [[ $ANSWER == "yes" ]]
+	if [[ $ANSWER == "no" ]]
 	then
 		exit 1;
 	fi

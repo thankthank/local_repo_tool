@@ -147,11 +147,10 @@ Additional_task() {
 scp -r 192.168.37.15:/root/my-tool $LOCAL_REPO_TARGET/
 rm -rf $LOCAL_REPO_TARGET/my-tool/.git
 
-## Copy cert from Filr
-rm -f cert.tar.gz
-wget --no-check-certificate https://filr.microfocus.com/ssf/s/readFile/share/162171/8375025754279403544/publicLink/cert.tar.gz
-tar xfvz cert.tar.gz -C $LOCAL_REPO_TARGET
-rm -f cert.tar.gz
+## Copy cert 
+#rm -f cert.tar.gz
+#wget --no-check-certificate "https://drive.google.com/open?id=1udukqxOU5MTlWYeWRySUnslE0rusjISi"
+tar xfvz cert.tar.gz -C $LOCAL_REPO_TARGET --overwrite
 
 ## Copy Tmux
 cp /srv/www/htdocs/repo/SUSE/Backports/SLE-15-SP1_x86_64/standard/rpm/x86_64_GA/tmux-2.7-bp151.3.1.x86_64.rpm $LOCAL_REPO_TARGET/utils
@@ -198,8 +197,8 @@ Debug ssh $HELM_MIRROR_SERVER $HELM_TOOL/mirror_helm_charts.sh $HELM_TOOL $HELM_
 #Create_SES6
 #Mirror_helm_chart 192.168.37.14 /root/admin/helm_chart_tool /root/admin/helm_local_repo 192.168.37.17
 ## Before running mirror images, merge the helm image list in $SW_DIR/helm_local_repo. Because some times helm-mirror is not able to get image name from tgz chart file.
-Mirror_images_in_Local_registry
-#Additional_task
-#Last_task
+#Mirror_images_in_Local_registry
+Additional_task
+Last_task
 
 
