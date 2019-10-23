@@ -152,7 +152,8 @@ rm -rf $LOCAL_REPO_TARGET/my-tool/.git
 #wget --no-check-certificate "https://drive.google.com/open?id=1udukqxOU5MTlWYeWRySUnslE0rusjISi"
 tar xfvz cert.tar.gz -C $LOCAL_REPO_TARGET --overwrite
 
-## Copy Tmux
+## Copy Utils
+mkdir -p $LOCAL_REPO_TARGET/utils
 cp /srv/www/htdocs/repo/SUSE/Backports/SLE-15-SP1_x86_64/standard/rpm/x86_64_GA/tmux-2.7-bp151.3.1.x86_64.rpm $LOCAL_REPO_TARGET/utils
 
 }
@@ -164,6 +165,13 @@ cat $SW_DIR/$FILENAME  | grep s_create_repo.sh |egrep 'pool|update' |grep -v ^#|
 echo '# You can make comments with #' > $LOCAL_REPO_TARGET/created_repo_list
 echo '#e.g. #caasp3-pool' >> $LOCAL_REPO_TARGET/created_repo_list
 cat created_repo_list | grep -v \| >> $LOCAL_REPO_TARGET/created_repo_list
+
+## Copy packages related to local repos
+mkdir -p $LOCAL_REPO_TARGET/utils/vsftpd-sle15sp1
+cp /srv/www/htdocs/repo/SUSE/Products/SLE-Module-Basesystem/15-SP1/x86_64/product/noarch/firewall-macros-0.5.5-4.24.9.noarch.rpm $LOCAL_REPO_TARGET/utils/vsftpd-sle15sp1/
+cp /srv/www/htdocs/repo/SUSE/Products/SLE-Module-Server-Applications/15-SP1/x86_64/product/noarch/system-user-ftp-20170617-4.155.noarch.rpm $LOCAL_REPO_TARGET/utils/vsftpd-sle15sp1/
+cp /srv/www/htdocs/repo/SUSE/Products/SLE-Module-Server-Applications/15-SP1/x86_64/product/x86_64/vsftpd-3.0.3-7.7.9.x86_64.rpm $LOCAL_REPO_TARGET/utils/vsftpd-sle15sp1/
+
 
 ## Copy deployment and registration script
 if [[ -e $LOCAL_REPO_TARGET/register_client.sh ]]; then rm -f $LOCAL_REPO_TARGET/register_client.sh;fi;
