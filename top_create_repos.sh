@@ -154,7 +154,8 @@ tar xfvz cert.tar.gz -C $LOCAL_REPO_TARGET --overwrite
 
 ## Copy Utils
 mkdir -p $LOCAL_REPO_TARGET/utils
-cp /srv/www/htdocs/repo/SUSE/Backports/SLE-15-SP1_x86_64/standard/rpm/x86_64_GA/tmux-2.7-bp151.3.1.x86_64.rpm $LOCAL_REPO_TARGET/utils
+# Download tmux to /root/admin/local_repo_tool/temp/
+cp /root/admin/local_repo_tool/temp/tmux-2.7-bp151.3.1.x86_64.rpm $LOCAL_REPO_TARGET/utils
 
 }
 
@@ -198,15 +199,24 @@ Debug ssh $HELM_MIRROR_SERVER $HELM_TOOL/mirror_helm_charts.sh $HELM_TOOL $HELM_
 
 }
 
+Tar_local_repo () {
+
+cd /srv;
+tar cvfz /srv/caasp4_airgap_$(date +%y%m%d).tar local_repo;
+
+}
+
 
 ## Here to Run
 #Create_SLES15SP1
 #Create_CaaSP4
 #Create_SES6
+## Create the list of container images, helm charts and helm repos as $SW_DIR/imagelist, $SW_DIR/helm_chart_tool/helm_chart_list and $SW_DIR/helm_chart_tool/helm_repo_list
 #Mirror_helm_chart 192.168.37.14 /root/admin/helm_chart_tool /root/admin/helm_local_repo 192.168.37.17
-## Before running mirror images, merge the helm image list in $SW_DIR/helm_local_repo. Because some times helm-mirror is not able to get image name from tgz chart file.
+## Before running mirror images, merge the helm image list in $LOCAL_REPO_TARGET/helm_local_repo with $SW_DIR/imagelist. Because some times helm-mirror is not able to get image name from tgz chart file.
 #Mirror_images_in_Local_registry
-Additional_task
-Last_task
+#Additional_task
+#Last_task
+Tar_local_repo
 
 

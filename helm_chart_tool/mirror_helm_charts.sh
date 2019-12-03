@@ -1,4 +1,12 @@
 #!/bin/bash
+# In the server, a few helm repo are required.
+# This script regards that the helm repos below already have configured in the server.
+#rmt:~/admin/helm_chart_tool # helm repo list
+#NAME            URL
+#stable          https://kubernetes-charts.storage.googleapis.com
+#local           http://127.0.0.1:8879/charts
+#suse-charts     https://kubernetes-charts.suse.com
+
 
 source /usr/lib/my_lib;
 
@@ -10,6 +18,7 @@ HELM_TOOL=$1
 
 # Application configuraion
 CHART_LIST="helm_chart_list"
+REPO_LIST="helm_repo_list"
 SMT=$3
 SMT_REPO="/srv/local_repo"
 HELM_IMAGE_LIST="helm_image_list"
@@ -82,9 +91,17 @@ rm -f ${FILE}_1.t;
 
 }
 
+Add_helm_repos () {
+
+cat $HELM_TOOL/$REPO_LIST | grep -v ^# | awk '{print "helm repo add "$1" "$2}'
+
+}
+
 ## Here to run
 
 Check_parameter "$@"
+
+Add_helm_repos
 
 awk -v V1=$LOCAL_REPO '!/^ *#/ {
 print "helm fetch "$1" -d "V1"/ --version "$2

@@ -1,8 +1,10 @@
-  # This is helm chart list
+# This is helm chart list
 # <Repo name>/<Chart name> <Chart Version>
 stable/kubernetes-dashboard 0.6.1
+#heapster generages error with helm-mirror inpect-images
 #stable/heapster 0.2.7
-stable/nginx-ingress 1.23.0
 stable/prometheus 9.1.1
 stable/grafana 3.8.15
 suse-charts/log-agent-rsyslog 1.0.1
+suse-charts/nginx-ingress 0.28.4
+#stable/nginx-ingress 1.23.0

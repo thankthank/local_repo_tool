@@ -1,0 +1,5 @@
+# The list of Helm Repo
+# format : <repo name> <URL>
+# e.g. suse-charts https://kubernetes-charts.suse.com
+stable          https://kubernetes-charts.storage.googleapis.com
+suse-charts     https://kubernetes-charts.suse.com
