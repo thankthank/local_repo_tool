@@ -117,7 +117,7 @@ cd /srv/www/htdocs/repo;
 
 }
 
-Mirror_images_in_Local_registry () {
+Download_images () {
 
 
 cat ./imagelist | grep -v ^# > ./imagelist.tmp;
@@ -159,7 +159,8 @@ cp /root/admin/local_repo_tool/temp/tmux-2.7-bp151.3.1.x86_64.rpm $LOCAL_REPO_TA
 
 }
 
-Last_task() {
+
+Local_repo_config_deployment() {
 
 ## Create  repo list
 cat $SW_DIR/$FILENAME  | grep s_create_repo.sh |egrep 'pool|update' |grep -v ^#| sed 's/;//g'| awk '{print $3   }' > created_repo_list
@@ -194,6 +195,7 @@ local SMT_IP=$4
 
 Debug ssh $HELM_MIRROR_SERVER mkdir -p $HELM_TOOL;
 Debug scp -r $SW_DIR/helm_chart_tool/* $HELM_MIRROR_SERVER:$HELM_TOOL/
+Debug ssh $HELM_MIRROR_SERVER rm -rf $HELM_LOCAL_REPO;
 Debug ssh $HELM_MIRROR_SERVER mkdir -p $HELM_LOCAL_REPO;
 Debug ssh $HELM_MIRROR_SERVER $HELM_TOOL/mirror_helm_charts.sh $HELM_TOOL $HELM_LOCAL_REPO $SMT_IP
 
@@ -202,21 +204,28 @@ Debug ssh $HELM_MIRROR_SERVER $HELM_TOOL/mirror_helm_charts.sh $HELM_TOOL $HELM_
 Tar_local_repo () {
 
 cd /srv;
-tar cvfz /srv/caasp4_airgap_$(date +%y%m%d).tar local_repo;
+tar cvf /srv/caasp4_airgap_$(date +%y%m%d).tar local_repo;
 
 }
 
-
+#################
 ## Here to Run
+#################
+
 #Create_SLES15SP1
 #Create_CaaSP4
 #Create_SES6
-## Create the list of container images, helm charts and helm repos as $SW_DIR/imagelist, $SW_DIR/helm_chart_tool/helm_chart_list and $SW_DIR/helm_chart_tool/helm_repo_list
+
+## Manually create the list of container images, helm charts and helm repos as $SW_DIR/imagelist, $SW_DIR/helm_chart_tool/helm_chart_list and $SW_DIR/helm_chart_tool/helm_repo_list
+## Regarding helm_chart_list, get the chart name from caasp guide and check the version of each chart with 'helm search <chart name>'
+## Regarding imagelist, Get image names from caasp guide and get Skuba image list with curl --insecure https://documentation.suse.com/external-tree/en-us/suse-caasp/4/skuba-cluster-images.txt | awk -F'image:' '{if($0~/1\.16/) print $2  }' 
 #Mirror_helm_chart 192.168.37.14 /root/admin/helm_chart_tool /root/admin/helm_local_repo 192.168.37.17
-## Before running mirror images, merge the helm image list in $LOCAL_REPO_TARGET/helm_local_repo with $SW_DIR/imagelist. Because some times helm-mirror is not able to get image name from tgz chart file.
-#Mirror_images_in_Local_registry
+
+## Before running Download_images, merge the helm image list in $LOCAL_REPO_TARGET/helm_local_repo with $SW_DIR/imagelist. Because some times helm-mirror is not able to get image name from tgz chart file.
+#Download_images
+
 #Additional_task
-#Last_task
+#Local_repo_config_deployment
 Tar_local_repo
 
 
