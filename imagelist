@@ -6,6 +6,7 @@
 #nginx:latest
 #haproxy:1.8
 #registry.suse.com/sles12/registry:2.6.2
+robbert229/rsyslog:latest
 ## Images in skuba configuration
 ##registry.suse.com/caasp/v4/pause:3.1
 ##registry.suse.com/caasp/v4/cilium:1.5.3

@@ -182,6 +182,11 @@ cp $SW_DIR/register_client.sh $LOCAL_REPO_TARGET/
 if [[ -e $LOCAL_REPO_TARGET/deploy_repos.sh ]]; then rm -f $LOCAL_REPO_TARGET/deploy_repos.sh;fi;
 cp $SW_DIR/deploy_repos.sh $LOCAL_REPO_TARGET/
 
+## Remove cm-scp_ses_deployment, cm-scp_caasp_deployment because these file needs to be copied seperately
+if [[ -e $LOCAL_REPO_TARGET/my-tool/cm-scp_ses_deployment ]]; then rm -f $LOCAL_REPO_TARGET/my-tool/cm-scp_ses_deployment;fi;
+if [[ -e $LOCAL_REPO_TARGET/my-tool/cm-scp_caasp_deployment ]]; then rm -f $LOCAL_REPO_TARGET/my-tool/cm-scp_caasp_deployment;fi;
+
+
 }
 
 Mirror_helm_chart() {
@@ -222,10 +227,10 @@ tar cvf /srv/caasp4_airgap_$(date +%y%m%d).tar local_repo;
 #Mirror_helm_chart 192.168.37.14 /root/admin/helm_chart_tool /root/admin/helm_local_repo 192.168.37.17
 
 ## Before running Download_images, merge the helm image list in $LOCAL_REPO_TARGET/helm_local_repo with $SW_DIR/imagelist. Because some times helm-mirror is not able to get image name from tgz chart file.
-#Download_images
+Download_images
 
 #Additional_task
 #Local_repo_config_deployment
-Tar_local_repo
+#Tar_local_repo
 
 
