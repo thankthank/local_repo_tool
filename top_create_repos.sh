@@ -152,6 +152,9 @@ rm -rf $LOCAL_REPO_TARGET/my-tool/.git
 #wget --no-check-certificate "https://drive.google.com/open?id=1udukqxOU5MTlWYeWRySUnslE0rusjISi"
 tar xfvz cert.tar.gz -C $LOCAL_REPO_TARGET --overwrite
 
+## Copy keys. This key is for initail setup. The system which use this key should generate its own key.
+tar xfvz keys.tar.gz -C $LOCAL_REPO_TARGET --overwrite
+
 ## Copy Utils
 mkdir -p $LOCAL_REPO_TARGET/utils
 # Download tmux to /root/admin/local_repo_tool/temp/
