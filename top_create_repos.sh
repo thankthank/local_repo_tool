@@ -153,6 +153,7 @@ rm -rf $LOCAL_REPO_TARGET/my-tool/.git
 tar xfvz cert.tar.gz -C $LOCAL_REPO_TARGET --overwrite
 
 ## Copy keys. This key is for initail setup. The system which use this key should generate its own key.
+## Generate ssh pub/private keys and put the keys in keys directory. Tar the key directory. e.g. Tar cvfz keys.tar.gz keys.
 tar xfvz keys.tar.gz -C $LOCAL_REPO_TARGET --overwrite
 
 ## Copy Utils
