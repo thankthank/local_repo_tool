@@ -48,7 +48,7 @@ then
 	REPOS=$(cat created_repo_list|grep -v ^#)
 
 	for i in $REPOS;
-	do zypper ar  "dir:///srv/ftp/${i}" ${i};
+	do zypper ar -cf "dir:///srv/ftp/${i}" ${i};
 	done
 	zypper ref;
 	zypper repos;

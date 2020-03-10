@@ -39,7 +39,7 @@ LOCAL_REPO=$1;
 REPOS=$(cat created_repo_list|grep -v ^#)
 
 for i in $REPOS;
-do zypper ar  "ftp://${LOCAL_REPO}/${i}" ${i};
+do zypper ar -cf "ftp://${LOCAL_REPO}/${i}" ${i};
 done
 zypper ref;
 zypper repos;
