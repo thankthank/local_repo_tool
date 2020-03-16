@@ -6,20 +6,10 @@
 #nginx:latest
 #haproxy:1.8
 #registry.suse.com/sles12/registry:2.6.2
-robbert229/rsyslog:latest
-## Images in skuba configuration
-##registry.suse.com/caasp/v4/pause:3.1
-##registry.suse.com/caasp/v4/cilium:1.5.3
-##registry.suse.com/caasp/v4/cilium-init:1.5.3
-##registry.suse.com/caasp/v4/cilium-operator:1.5.3
-##registry.suse.com/caasp/v4/kured:1.2.0
-##registry.suse.com/caasp/v4/caasp-dex:2.16.0
-##registry.suse.com/caasp/v4/gangway:3.1.0
-##registry.suse.com/caasp/v4/gangway:3.1.0-rev4
-##registry.suse.com/caasp/v4/coredns:1.3.1
-##registry.suse.com/caasp/v4/hyperkube:v1.15.2
-##registry.suse.com/caasp/v4/etcd:3.3.11
-##registry.suse.com/caasp/v4/skuba-tooling:0.1.0
+#robbert229/rsyslog:latest
+## k8s dashboard
+#kubernetesui/dashboard:v2.0.0-rc3
+#kubernetesui/metrics-scraper:v1.0.1
 ################
 ## Images from skuba-cluser-images.txt with k8s 1.16
 #registry.suse.com/caasp/v4/hyperkube:v1.16.2
@@ -37,16 +27,10 @@ robbert229/rsyslog:latest
 ## Images in caasp4.1 guide
 #registry.suse.com/caasp/v4/389-ds:1.4.0
 #registry.suse.com/caasp/v4/helm-tiller:2.16.1
-##gcr.io/kubernetes-helm/tiller:v2.14.2
 ####################################
 ## Images from helm_chart_tool
 ####################################
-## For heapster, not able to get image name by helm-mirror inspect-images. So manually got this from values.yaml
-#k8s.gcr.io/addon-resizer:1.7
-#k8s.gcr.io/heapster-amd64:v1.5.4
-## Done for heapster
 #registry.suse.com/caasp/v4/grafana:6.2.5
-#k8s.gcr.io/kubernetes-dashboard-amd64:v1.10.1
 #registry.suse.com/caasp/v4/rsyslog:8.39.0
 #registry.suse.com/sles12/nginx-ingress-controller:0.15.0
 #registry.suse.com/sles12/default-http-backend:0.15.0
@@ -55,4 +39,37 @@ robbert229/rsyslog:latest
 #registry.suse.com/caasp/v4/prometheus-node-exporter:0.17.0
 #registry.suse.com/caasp/v4/prometheus-alertmanager:0.16.2
 #registry.suse.com/caasp/v4/configmap-reload:0.3.0
-#registry.suse.com/caasp/v4/kube-state-metrics:1.6.0
+#registry.suse.com/caasp/v4/kube-state-metrics:1.9.3
+## Image needed for grafana. This is not detected by helm-mirror.
+#busybox:1.30
+dduportal/bats:0.4.0
+kiwigrid/k8s-sidecar:0.1.20
+## Stratos
+#registry.suse.com/cap/stratos-console:2.7.0-35f5964bd-cap
+#registry.suse.com/cap/stratos-postflight-job:2.7.0-35f5964bd-cap
+#registry.suse.com/cap/stratos-jetstream:2.7.0-35f5964bd-cap
+#registry.suse.com/cap/stratos-mariadb:2.7.0-35f5964bd-cap
+###############################
+## Images not used anymore
+###############################
+##gcr.io/kubernetes-helm/tiller:v2.14.2
+############################################
+## Images in skuba configuration
+##registry.suse.com/caasp/v4/pause:3.1
+##registry.suse.com/caasp/v4/cilium:1.5.3
+##registry.suse.com/caasp/v4/cilium-init:1.5.3
+##registry.suse.com/caasp/v4/cilium-operator:1.5.3
+##registry.suse.com/caasp/v4/kured:1.2.0
+##registry.suse.com/caasp/v4/caasp-dex:2.16.0
+##registry.suse.com/caasp/v4/gangway:3.1.0
+##registry.suse.com/caasp/v4/gangway:3.1.0-rev4
+##registry.suse.com/caasp/v4/coredns:1.3.1
+##registry.suse.com/caasp/v4/hyperkube:v1.15.2
+##registry.suse.com/caasp/v4/etcd:3.3.11
+##registry.suse.com/caasp/v4/skuba-tooling:0.1.0
+## For heapster, not able to get image name by helm-mirror inspect-images. So manually got this from values.yaml
+##k8s.gcr.io/addon-resizer:1.7
+##k8s.gcr.io/heapster-amd64:v1.5.4
+## Done for heapster
+##k8s.gcr.io/kubernetes-dashboard-amd64:v1.10.1
+##registry.suse.com/caasp/v4/kube-state-metrics:1.6.0

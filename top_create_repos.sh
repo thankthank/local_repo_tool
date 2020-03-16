@@ -142,7 +142,10 @@ echo empty
 }
 
 
-Additional_task() {
+Copy_files_not_from_repos() {
+mkdir -p $SW_DIR/filesNotFromRepo
+
+
 ## Copy my-tool from teamviewer
 scp -r 192.168.37.15:/root/my-tool $LOCAL_REPO_TARGET/
 rm -rf $LOCAL_REPO_TARGET/my-tool/.git
@@ -150,16 +153,17 @@ rm -rf $LOCAL_REPO_TARGET/my-tool/.git
 ## Copy cert 
 #rm -f cert.tar.gz
 #wget --no-check-certificate "https://drive.google.com/open?id=1udukqxOU5MTlWYeWRySUnslE0rusjISi"
-tar xfvz cert.tar.gz -C $LOCAL_REPO_TARGET --overwrite
+tar xfvz filesNotFromRepo/cert.tar.gz -C $LOCAL_REPO_TARGET --overwrite
 
 ## Copy keys. This key is for initail setup. The system which use this key should generate its own key.
 ## Generate ssh pub/private keys and put the keys in keys directory. Tar the key directory. e.g. Tar cvfz keys.tar.gz keys.
-tar xfvz keys.tar.gz -C $LOCAL_REPO_TARGET --overwrite
+tar xfvz filesNotFromRepo/keys.tar.gz -C $LOCAL_REPO_TARGET --overwrite
 
 ## Copy Utils
 mkdir -p $LOCAL_REPO_TARGET/utils
 # Download tmux to /root/admin/local_repo_tool/temp/
-cp /root/admin/local_repo_tool/temp/tmux-2.7-bp151.3.1.x86_64.rpm $LOCAL_REPO_TARGET/utils
+cp filesNotFromRepo/tmux-2.7-bp151.3.1.x86_64.rpm $LOCAL_REPO_TARGET/utils
+
 
 }
 
@@ -168,9 +172,9 @@ Local_repo_config_deployment() {
 
 ## Create  repo list
 cat $SW_DIR/$FILENAME  | grep s_create_repo.sh |egrep 'pool|update' |grep -v ^#| sed 's/;//g'| awk '{print $3   }' > created_repo_list
-echo '# You can make comments with #' > $LOCAL_REPO_TARGET/created_repo_list
-echo '#e.g. #caasp3-pool' >> $LOCAL_REPO_TARGET/created_repo_list
-cat created_repo_list | grep -v \| >> $LOCAL_REPO_TARGET/created_repo_list
+echo '# You can make comments with #' > $LOCAL_REPO_TARGET/created_repo_list_org
+echo '#e.g. #caasp3-pool' >> $LOCAL_REPO_TARGET/created_repo_list_org
+cat created_repo_list | grep -v \| >> $LOCAL_REPO_TARGET/created_repo_list_org
 
 ## Copy packages related to local repos
 mkdir -p $LOCAL_REPO_TARGET/utils/vsftpd-sle15sp1
@@ -217,6 +221,34 @@ tar cvf /srv/caasp4_airgap_$(date +%y%m%d).tar local_repo;
 
 }
 
+Tar_local_repo_CaaSP () {
+
+cd /srv;
+mv local_repo local_repo_t
+mkdir /srv/local_repo
+
+## Move packages which needed to be copied.
+# Move SLE and CaaSP Packages
+ls /srv/local_repo_t | awk '{if(/sle15sp1|sles15sp1|caasp4/) print "mv /srv/local_repo_t/"$0" /srv/local_repo/" }'  | bash
+
+# Move files
+for i in  cert docker_images_file  helm_local_repo  k8s_conf  keys  my-tool  utils;do
+mv /srv/local_repo_t/$i /srv/local_repo/
+done
+
+# Move repository creation and registration scripts.
+cat /srv/local_repo_t/created_repo_list_org  | egrep '(sle15sp1|sles15sp1|caasp4)' > /srv/local_repo_t/created_repo_list;
+for i in created_repo_list_org created_repo_list deploy_repos.sh register_client.sh;do
+mv /srv/local_repo_t/$i /srv/local_repo/
+done
+
+tar cvf /srv/caasp4_airgap_$(date +%y%m%d).tar local_repo;
+
+mv /srv/local_repo_t/* /srv/local_repo/
+rmdir /srv/local_repo_t
+
+}
+
 #################
 ## Here to Run
 #################
@@ -231,10 +263,14 @@ tar cvf /srv/caasp4_airgap_$(date +%y%m%d).tar local_repo;
 #Mirror_helm_chart 192.168.37.14 /root/admin/helm_chart_tool /root/admin/helm_local_repo 192.168.37.17
 
 ## Before running Download_images, merge the helm image list in $LOCAL_REPO_TARGET/helm_local_repo with $SW_DIR/imagelist. Because some times helm-mirror is not able to get image name from tgz chart file.
-Download_images
+#Download_images
 
-#Additional_task
+#Copy_files_not_from_repos
+
 #Local_repo_config_deployment
-#Tar_local_repo
+
+Tar_local_repo_CaaSP
+#Tar_local_repo_SES
+#Tar_local_repo_CaaSP_SES
 
 

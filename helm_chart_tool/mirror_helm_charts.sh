@@ -118,10 +118,11 @@ do
 	Debug_print "helm-mirror inspect-images $LOCAL_REPO/$i -o stdout \>\> $LOCAL_REPO/$HELM_IMAGE_LIST"
 	helm-mirror inspect-images $LOCAL_REPO/$i -o stdout >> $LOCAL_REPO/$HELM_IMAGE_LIST
 
-	# change values.yaml
-	Debug tar xvfz $LOCAL_REPO/$i -C $LOCAL_REPO --overwrite;
-	CHART=${i%-*}
-	Debug Replace_helm_value $LOCAL_REPO/$CHART/values.yaml
+	## change values.yaml
+	## Don't have to replace image registry because of crio container registry proxy configuraion.
+	#Debug tar xvfz $LOCAL_REPO/$i -C $LOCAL_REPO --overwrite;
+	#CHART=${i%-*}
+	#Debug Replace_helm_value $LOCAL_REPO/$CHART/values.yaml
 	
 	cd $LOCAL_REPO
 	Debug tar cvfz ${i} $CHART --overwrite;
