@@ -242,9 +242,9 @@ for i in created_repo_list_org created_repo_list deploy_repos.sh register_client
 mv /srv/local_repo_t/$i /srv/local_repo/
 done
 
-tar cvf /srv/caasp4_airgap_$(date +%y%m%d).tar local_repo;
+tar czvf /srv/caasp4_airgap_$(date +%y%m%d).tar.gz local_repo;
 
-mv /srv/local_repo_t/* /srv/local_repo/
+mv /srv/local_repo_t/* /srv/local_repo/ 2>/dev/null
 rmdir /srv/local_repo_t
 
 }
