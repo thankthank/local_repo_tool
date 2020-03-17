@@ -221,33 +221,84 @@ tar cvf /srv/caasp4_airgap_$(date +%y%m%d).tar local_repo;
 
 }
 
-Tar_local_repo_CaaSP () {
+Tar_local_repo_SLES15SP1 () {
 
 cd /srv;
-mv local_repo local_repo_t
-mkdir /srv/local_repo
+
+echo "Check /srv/tar_temp, before delete operation"
+Debug rm -rf /srv/tar_temp;
+mkdir -p /srv/tar_temp/local_repo
 
 ## Move packages which needed to be copied.
-# Move SLE and CaaSP Packages
-ls /srv/local_repo_t | awk '{if(/sle15sp1|sles15sp1|caasp4/) print "mv /srv/local_repo_t/"$0" /srv/local_repo/" }'  | bash
+# Move SLE Packages
+ls /srv/local_repo | awk '{if(/sle15sp1|sles15sp1/) print "mv /srv/local_repo/"$0" /srv/tar_temp/local_repo/" }' | bash 
 
-# Move files
+# Move repository creation and registration scripts.
+cat /srv/local_repo/created_repo_list_org  | egrep '(sle15sp1|sles15sp1)' > /srv/local_repo/created_repo_list_sles15sp1;
+for i in created_repo_list_sles15sp1 deploy_repos.sh register_client.sh;do
+mv /srv/local_repo/$i /srv/tar_temp/local_repo/
+done
+
+cd /srv/tar_temp;
+local FILENAME=sles15sp1_$(date +%y%m%d)
+tar cvf /srv/$FILENAME.tar local_repo;
+md5sum /srv/$FILENAME.tar > /srv/$FILENAME.md5
+
+cd /srv/;
+mv /srv/tar_temp/local_repo/* /srv/local_repo/ 2>/dev/null
+
+rmdir /srv/tar_temp/local_repo
+rmdir /srv/tar_temp
+
+
+}
+
+Tar_local_repo_CaaSP4 () {
+
+cd /srv;
+
+echo "Check /srv/tar_temp, before delete operation"
+Debug rm -rf /srv/tar_temp;
+mkdir -p /srv/tar_temp/local_repo
+
+## Move packages which needed to be copied.
+
+# Move caasp Packages
+ls /srv/local_repo | awk '{if(/caasp4/) print "mv /srv/local_repo/"$0" /srv/tar_temp/local_repo/" }'  | bash
+
+# Move caasp related files
 for i in  cert docker_images_file  helm_local_repo  k8s_conf  keys  my-tool  utils;do
-mv /srv/local_repo_t/$i /srv/local_repo/
+mv /srv/local_repo/$i /srv/tar_temp/local_repo/
 done
 
 # Move repository creation and registration scripts.
-cat /srv/local_repo_t/created_repo_list_org  | egrep '(sle15sp1|sles15sp1|caasp4)' > /srv/local_repo_t/created_repo_list;
-for i in created_repo_list_org created_repo_list deploy_repos.sh register_client.sh;do
-mv /srv/local_repo_t/$i /srv/local_repo/
+cat /srv/local_repo/created_repo_list_org  | egrep '(caasp4)' > /srv/local_repo/created_repo_list_caasp4;
+for i in created_repo_list_caasp4 deploy_repos.sh register_client.sh;do
+mv /srv/local_repo/$i /srv/tar_temp/local_repo/
 done
 
-tar czvf /srv/caasp4_airgap_$(date +%y%m%d).tar.gz local_repo;
+# Tar the directory
+cd /srv/tar_temp;
+local FILENAME=caasp4_$(date +%y%m%d)
+tar cvfz /srv/$FILENAME.tar.gz local_repo;
+md5sum /srv/$FILENAME.tar.gz > /srv/$FILENAME.md5
 
-mv /srv/local_repo_t/* /srv/local_repo/ 2>/dev/null
-rmdir /srv/local_repo_t
+# move back the files
+cd /srv/;
+mv /srv/tar_temp/local_repo/* /srv/local_repo/ 2>/dev/null
+
+rmdir /srv/tar_temp/local_repo
+rmdir /srv/tar_temp
 
 }
+
+Tar_local_repo_SES6 () {
+
+echo ""
+
+}
+
+
 
 #################
 ## Here to Run
@@ -269,8 +320,8 @@ rmdir /srv/local_repo_t
 
 #Local_repo_config_deployment
 
-Tar_local_repo_CaaSP
+Tar_local_repo_SLES15SP1
+Tar_local_repo_CaaSP4
 #Tar_local_repo_SES
-#Tar_local_repo_CaaSP_SES
 
 

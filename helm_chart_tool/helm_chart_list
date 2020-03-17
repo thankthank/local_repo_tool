@@ -1,15 +1,17 @@
 ## This is helm chart list
 ## <Repo name>/<Chart name> <Chart Version>
+suse-charts/prometheus 9.3.3
+suse-charts/grafana 4.0.0
+suse-charts/log-agent-rsyslog 1.0.2
+suse-charts/nginx-ingress 0.28.4
+suse-charts/console 2.7.0
+## Old charts
 ## stable/kubernetes-dashboard 0.6.1
 ## stable/kubernetes-dashboard 1.10.0
+## stable/grafana 3.8.15
+## stable/nginx-ingress 1.23.0
+## stable/prometheus 9.1.1
 ## heapster generages error with helm-mirror inpect-images
 ## stable/heapster 0.2.7
 ## stable/heapster 1.0.1
-## stable/prometheus 9.1.1
-suse-charts/prometheus 9.3.3
-## stable/grafana 3.8.15
-#suse-charts/grafana 4.0.0
-suse-charts/log-agent-rsyslog 1.0.2
-#suse-charts/nginx-ingress 0.28.4
-## stable/nginx-ingress 1.23.0
-suse-charts/console 2.7.0
+

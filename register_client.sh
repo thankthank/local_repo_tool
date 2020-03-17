@@ -12,11 +12,12 @@ then
 fi
 
 #Check the repo file
-if [[  -e ./created_repo_list ]]
+RESULT=$(ls ./created_repo_list* 2>/dev/null) 
+if [[ $RESULT != "" ]]
 then
 
 	echo "The repositories below in the file created_repo_list will be registered"
-	cat ./created_repo_list
+	cat ./created_repo_list* | grep -v ^# | awk '!a[$0]++'
 	echo;echo;
 
 	echo "Do you want to continue?" 
@@ -29,14 +30,14 @@ then
 
 else
 
-	echo "No repository file"
+	echo "No repository files"
 	exit 1;
 
 fi
 
 #Add repos
 LOCAL_REPO=$1;
-REPOS=$(cat created_repo_list|grep -v ^#)
+REPOS=$(cat created_repo_list*|grep -v ^# |awk '!a[$0]++' )
 
 for i in $REPOS;
 do zypper ar -cf "ftp://${LOCAL_REPO}/${i}" ${i};

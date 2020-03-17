@@ -23,11 +23,13 @@ then
 
 	#Add repo fot admin
 	#Check the repo file
-	if [[  -e ./created_repo_list ]]
+
+	RESULT=$(ls ./created_repo_list* 2>/dev/null) 
+	if [[ $RESULT != "" ]]
 	then
 
         	echo "The repositories below in the file created_repo_list will be registered"
-        	cat ./created_repo_list
+        	cat ./created_repo_list* | grep -v ^# | awk '!a[$0]++'
         	echo;echo;
 
         	echo "Do you want to continue? (yes/no)"
@@ -45,7 +47,7 @@ then
 	fi
 
 	#add repos
-	REPOS=$(cat created_repo_list|grep -v ^#)
+	REPOS=$(cat created_repo_list*|grep -v ^#| awk '!a[$0]++')
 
 	for i in $REPOS;
 	do zypper ar -cf "dir:///srv/ftp/${i}" ${i};
