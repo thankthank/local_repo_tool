@@ -42,66 +42,112 @@ cd /srv/www/htdocs/repo/SUSE/Updates/SLE-Product-SLES/15-SP1/x86_64;
 s_create_repo.sh update product-sles15sp1-update;
 cd /srv/www/htdocs/repo;
 
-#Repo for basesystem module pool repo of SLES15SP1
+
+}
+
+Create_SLE_modules_15SP1() {
+#Repo for basesystem module pool repo of SLE15SP1
 cd /srv/www/htdocs/repo/SUSE/Products/SLE-Module-Basesystem/15-SP1/x86_64; 
 s_create_repo.sh product basesystem_module-sle15sp1-pool;
-cd /srv/www/htdocs/repo;
 
-#Repo for basesystem module update repo of SLES15SP1
+#Repo for basesystem module update repo of SLE15SP1
 cd /srv/www/htdocs/repo/SUSE/Updates/SLE-Module-Basesystem/15-SP1/x86_64; 
 s_create_repo.sh update basesystem_module-sle15sp1-update;
-cd /srv/www/htdocs/repo;
 
-#Repo for server applications module pool repo of SLES15SP1
+#Repo for server applications module pool repo of SLE15SP1
 cd /srv/www/htdocs/repo/SUSE/Products/SLE-Module-Server-Applications/15-SP1/x86_64; 
 s_create_repo.sh product serverapplication_module-sle15sp1-pool;
-cd /srv/www/htdocs/repo;
 
-#Repo for server applications module update repo of SLES15SP1
+#Repo for server applications module update repo of SLE15SP1
 cd /srv/www/htdocs/repo/SUSE/Updates/SLE-Module-Server-Applications/15-SP1/x86_64; 
 s_create_repo.sh update serverapplication_module-sle15sp1-update;
-cd /srv/www/htdocs/repo;
 
-#Repo for container module pool repo of SLES15SP1
+#Repo for container module pool repo of SLE15SP1
 cd /srv/www/htdocs/repo/SUSE/Products/SLE-Module-Containers/15-SP1/x86_64; 
 s_create_repo.sh product containers_module-sle15sp1-pool;
-cd /srv/www/htdocs/repo;
 
-#Repo for container module update repo of SLES15SP1
+#Repo for container module update repo of SLE15SP1
 cd /srv/www/htdocs/repo/SUSE/Updates/SLE-Module-Containers/15-SP1/x86_64; 
-s_create_repo.sh update containers_module-sles15sp1-update;
-cd /srv/www/htdocs/repo;
+s_create_repo.sh update containers_module-sle15sp1-update;
 
-#Repo for cap tool module pool repo of SLES15SP1
+#Repo for cap tool module pool repo of SLE15SP1
 cd /srv/www/htdocs/repo/SUSE/Products/SLE-Module-CAP-Tools/15-SP1/x86_64; 
 s_create_repo.sh product captools_module-sle15sp1-pool;
-cd /srv/www/htdocs/repo;
 
-#Repo for cap tool module update repo of SLES15SP1
+#Repo for cap tool module update repo of SLE15SP1
 cd /srv/www/htdocs/repo/SUSE/Updates/SLE-Module-CAP-Tools/15-SP1/x86_64; 
-s_create_repo.sh update captools_module-sles15sp1-update;
-cd /srv/www/htdocs/repo;
+s_create_repo.sh update captools_module-sle15sp1-update;
 
-#Repo for desktop applications module pool repo of SLES15SP1
+#Repo for desktop applications module pool repo of SLE15SP1
 cd /srv/www/htdocs/repo/SUSE/Products/SLE-Module-Desktop-Applications/15-SP1/x86_64; 
 s_create_repo.sh product desktopapp_module-sle15sp1-pool;
-cd /srv/www/htdocs/repo;
 
-#Repo for desktop applications module update repo of SLES15SP1
+#Repo for desktop applications module update repo of SLE15SP1
 cd /srv/www/htdocs/repo/SUSE/Updates/SLE-Module-Desktop-Applications/15-SP1/x86_64; 
-s_create_repo.sh update desktopapp_module-sles15sp1-update;
-cd /srv/www/htdocs/repo;
+s_create_repo.sh update desktopapp_module-sle15sp1-update;
 
-#Repo for Dev tools module pool repo of SLES15SP1
+#Repo for Dev tools module pool repo of SLE15SP1
 cd /srv/www/htdocs/repo/SUSE/Products/SLE-Module-Development-Tools/15-SP1/x86_64; 
 s_create_repo.sh product devtools_module-sle15sp1-pool;
-cd /srv/www/htdocs/repo;
 
-#Repo for Dev tools module update repo of SLES15SP1
+#Repo for Dev tools module update repo of SLE15SP1
 cd /srv/www/htdocs/repo/SUSE/Updates/SLE-Module-Development-Tools/15-SP1/x86_64; 
-s_create_repo.sh update devtools_module-sles15sp1-update;
-cd /srv/www/htdocs/repo;
+s_create_repo.sh update devtools_module-sle15sp1-update;
+
+#Repo for Python2 module pool repo of SLE15SP1
+cd /srv/www/htdocs/repo/SUSE/Products/SLE-Module-Python2/15-SP1/x86_64; 
+s_create_repo.sh product python2_module-sle15sp1-pool;
+
+#Repo for Python2 module update repo of SLE15SP1
+cd /srv/www/htdocs/repo/SUSE/Updates/SLE-Module-Python2/15-SP1/x86_64; 
+s_create_repo.sh update python2_module-sle15sp1-update;
+
+#Repo for Legacy module pool repo of SLE15SP1
+cd /srv/www/htdocs/repo/SUSE/Products/SLE-Module-Legacy/15-SP1/x86_64; 
+s_create_repo.sh product legacy_module-sle15sp1-pool;
+
+#Repo for Legacy module update repo of SLE15SP1
+cd /srv/www/htdocs/repo/SUSE/Updates/SLE-Module-Legacy/15-SP1/x86_64; 
+s_create_repo.sh update legacy_module-sle15sp1-update;
+
+#Repo for Web scripting module pool repo of SLE15SP1
+cd /srv/www/htdocs/repo/SUSE/Products/SLE-Module-Web-Scripting/15-SP1/x86_64; 
+s_create_repo.sh product web_scripting_module-sle15sp1-pool;
+
+#Repo for Web scripting module update repo of SLE15SP1
+cd /srv/www/htdocs/repo/SUSE/Updates/SLE-Module-Web-Scripting/15-SP1/x86_64; 
+s_create_repo.sh update web_scripting_module-sle15sp1-update;
 }
+
+Create_SLESforSAP15SP1() {
+
+#Repo for Product pool repo of SLESforSAP15SP1 
+cd /srv/www/htdocs/repo/SUSE/Products/SLE-Product-SLES_SAP/15-SP1/x86_64; 
+s_create_repo.sh product product-slesap15sp1-pool;
+
+#Repo for Update repo of SLESforSAP15SP1 
+cd /srv/www/htdocs/repo/SUSE/Updates/SLE-Product-SLES_SAP/15-SP1/x86_64; 
+s_create_repo.sh update product-slesap15sp1-update;
+
+#Repo for SAP application module pool repo of SLE15SP1
+cd /srv/www/htdocs/repo/SUSE/Products/SLE-Module-SAP-Applications/15-SP1/x86_64; 
+s_create_repo.sh product sap_applications_module-slesap15sp1-pool;
+
+#Repo for SAP application module update repo of SLE15SP1
+cd /srv/www/htdocs/repo/SUSE/Updates/SLE-Module-SAP-Applications/15-SP1/x86_64; 
+s_create_repo.sh update sap_applications_module-slesap15sp1-update;
+
+#Repo for HA product pool repo of SLE15SP1
+cd /srv/www/htdocs/repo/SUSE/Products/SLE-Product-HA/15-SP1/x86_64; 
+s_create_repo.sh product ha_product-slesap15sp1-pool;
+
+#Repo for HA product module update repo of SLE15SP1
+cd /srv/www/htdocs/repo/SUSE/Updates/SLE-Product-HA/15-SP1/x86_64; 
+s_create_repo.sh update ha_product-slesap15sp1-update;
+
+}
+
+
 
 Create_CaaSP4 () {
 #######CaaSP4
@@ -137,7 +183,17 @@ rm -f ./imagelist.tmp
 }
 
 Create_SES6 () {
-echo empty
+
+####### SES6
+#Repo for SES6 pool repo
+cd /srv/www/htdocs/repo/SUSE/Products/Storage/6/x86_64;
+s_create_repo.sh product ses6-pool;
+cd /srv/www/htdocs/repo;
+
+#Repo for SES6 update repo
+cd /srv/www/htdocs/repo/SUSE/Updates/Storage/6/x86_64;
+s_create_repo.sh update ses6-update;
+cd /srv/www/htdocs/repo;
 
 }
 
@@ -168,7 +224,7 @@ cp filesNotFromRepo/tmux-2.7-bp151.3.1.x86_64.rpm $LOCAL_REPO_TARGET/utils
 }
 
 
-Local_repo_config_deployment() {
+Local_repo_config_deployment_sle15sp1() {
 
 ## Create  repo list
 cat $SW_DIR/$FILENAME  | grep s_create_repo.sh |egrep 'pool|update' |grep -v ^#| sed 's/;//g'| awk '{print $3   }' > created_repo_list
@@ -214,14 +270,21 @@ Debug ssh $HELM_MIRROR_SERVER $HELM_TOOL/mirror_helm_charts.sh $HELM_TOOL $HELM_
 
 }
 
-Tar_local_repo () {
+Tar_local_repo_all () {
 
 cd /srv;
 tar cvf /srv/caasp4_airgap_$(date +%y%m%d).tar local_repo;
 
 }
 
-Tar_local_repo_SLES15SP1 () {
+Tar_local_repo () {
+
+if [[ $1 == "" ]]; then
+	echo "No parameter";
+	return 1;
+fi
+local REPO=$1
+
 
 cd /srv;
 
@@ -231,16 +294,21 @@ mkdir -p /srv/tar_temp/local_repo
 
 ## Move packages which needed to be copied.
 # Move SLE Packages
-ls /srv/local_repo | awk '{if(/sle15sp1|sles15sp1/) print "mv /srv/local_repo/"$0" /srv/tar_temp/local_repo/" }' | bash 
+ls /srv/local_repo | awk '{if(/'$REPO'/) print "mv /srv/local_repo/"$0" /srv/tar_temp/local_repo/" }' | bash 
 
 # Move repository creation and registration scripts.
-cat /srv/local_repo/created_repo_list_org  | egrep '(sle15sp1|sles15sp1)' > /srv/local_repo/created_repo_list_sles15sp1;
-for i in created_repo_list_sles15sp1 deploy_repos.sh register_client.sh;do
+cat /srv/local_repo/created_repo_list_org  | egrep "($REPO)" > /srv/local_repo/created_repo_list_$REPO;
+for i in created_repo_list_$REPO deploy_repos.sh register_client.sh;do
+mv /srv/local_repo/$i /srv/tar_temp/local_repo/
+done
+
+# Move local_repo related files
+for i in  my-tool  utils;do
 mv /srv/local_repo/$i /srv/tar_temp/local_repo/
 done
 
 cd /srv/tar_temp;
-local FILENAME=sles15sp1_$(date +%y%m%d)
+local FILENAME=${REPO}_$(date +%y%m%d)
 tar cvf /srv/$FILENAME.tar local_repo;
 md5sum /srv/$FILENAME.tar > /srv/$FILENAME.md5
 
@@ -252,6 +320,7 @@ rmdir /srv/tar_temp
 
 
 }
+
 
 Tar_local_repo_CaaSP4 () {
 
@@ -292,19 +361,13 @@ rmdir /srv/tar_temp
 
 }
 
-Tar_local_repo_SES6 () {
-
-echo ""
-
-}
-
-
-
 #################
 ## Here to Run
 #################
 
+#Create_SLE_modules_15SP1
 #Create_SLES15SP1
+#Create_SLESforSAP15SP1
 #Create_CaaSP4
 #Create_SES6
 
@@ -318,10 +381,12 @@ echo ""
 
 #Copy_files_not_from_repos
 
-#Local_repo_config_deployment
+#Local_repo_config_deployment_sle15sp1
 
-Tar_local_repo_SLES15SP1
-Tar_local_repo_CaaSP4
-#Tar_local_repo_SES
+#Tar_local_repo sle15sp1
+#Tar_local_repo sles15sp1
+#Tar_local_repo slesap15sp1
+#Tar_local_repo ses6
+#Tar_local_repo_CaaSP4
 
 

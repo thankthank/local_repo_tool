@@ -42,8 +42,8 @@
 #registry.suse.com/caasp/v4/kube-state-metrics:1.9.3
 ## Image needed for grafana. This is not detected by helm-mirror.
 #busybox:1.30
-dduportal/bats:0.4.0
-kiwigrid/k8s-sidecar:0.1.20
+#dduportal/bats:0.4.0
+#kiwigrid/k8s-sidecar:0.1.20
 ## Stratos
 #registry.suse.com/cap/stratos-console:2.7.0-35f5964bd-cap
 #registry.suse.com/cap/stratos-postflight-job:2.7.0-35f5964bd-cap
@@ -59,13 +59,13 @@ kiwigrid/k8s-sidecar:0.1.20
 ##registry.suse.com/caasp/v4/cilium:1.5.3
 ##registry.suse.com/caasp/v4/cilium-init:1.5.3
 ##registry.suse.com/caasp/v4/cilium-operator:1.5.3
-##registry.suse.com/caasp/v4/kured:1.2.0
+registry.suse.com/caasp/v4/kured:1.2.0
 ##registry.suse.com/caasp/v4/caasp-dex:2.16.0
 ##registry.suse.com/caasp/v4/gangway:3.1.0
 ##registry.suse.com/caasp/v4/gangway:3.1.0-rev4
-##registry.suse.com/caasp/v4/coredns:1.3.1
-##registry.suse.com/caasp/v4/hyperkube:v1.15.2
-##registry.suse.com/caasp/v4/etcd:3.3.11
+registry.suse.com/caasp/v4/coredns:1.3.1
+registry.suse.com/caasp/v4/hyperkube:v1.15.2
+registry.suse.com/caasp/v4/etcd:3.3.11
 ##registry.suse.com/caasp/v4/skuba-tooling:0.1.0
 ## For heapster, not able to get image name by helm-mirror inspect-images. So manually got this from values.yaml
 ##k8s.gcr.io/addon-resizer:1.7
