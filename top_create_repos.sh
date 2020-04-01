@@ -117,6 +117,14 @@ s_create_repo.sh product web_scripting_module-sle15sp1-pool;
 #Repo for Web scripting module update repo of SLE15SP1
 cd /srv/www/htdocs/repo/SUSE/Updates/SLE-Module-Web-Scripting/15-SP1/x86_64; 
 s_create_repo.sh update web_scripting_module-sle15sp1-update;
+
+#Repo for Public cloud module pool repo of SLE15SP1
+cd /srv/www/htdocs/repo/SUSE/Products/SLE-Module-Public-Cloud/15-SP1/x86_64; 
+s_create_repo.sh product public_cloud_module-sle15sp1-pool;
+
+#Repo for Public cloud module update repo of SLE15SP1
+cd /srv/www/htdocs/repo/SUSE/Updates/SLE-Module-Public-Cloud/15-SP1/x86_64; 
+s_create_repo.sh update public_cloud_module-sle15sp1-update;
 }
 
 Create_SLESforSAP15SP1() {
