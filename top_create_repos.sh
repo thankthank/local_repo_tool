@@ -23,7 +23,6 @@ source /usr/lib/my_lib
 SW_DIR="/root/admin/local_repo_tool"
 
 # Application Configuration
-PWD="/srv/www/htdocs/repo"
 FILENAME="top_create_repos.sh"
 if [[ -e /usr/bin/s_create_repo.sh ]]; then rm -f /usr/bin/s_create_repo.sh;fi;
 ln -s $SW_DIR/create_repo.sh /usr/bin/s_create_repo.sh
@@ -226,7 +225,12 @@ tar xfvz filesNotFromRepo/keys.tar.gz -C $LOCAL_REPO_TARGET --overwrite
 ## Copy Utils
 mkdir -p $LOCAL_REPO_TARGET/utils
 # Download tmux to /root/admin/local_repo_tool/temp/
-cp filesNotFromRepo/tmux-2.7-bp151.3.1.x86_64.rpm $LOCAL_REPO_TARGET/utils
+cp -v filesNotFromRepo/tmux-2.7-bp151.3.1.x86_64.rpm $LOCAL_REPO_TARGET/utils
+
+## Copy qcow2 images
+mkdir -p $LOCAL_REPO_TARGET/qcow2_images
+# Locate qcow2 images in /srv/qcow2_images
+cp -v /srv/qcow2_images/* $LOCAL_REPO_TARGET/qcow2_images/
 
 
 }
@@ -253,10 +257,6 @@ cp $SW_DIR/register_client.sh $LOCAL_REPO_TARGET/
 
 if [[ -e $LOCAL_REPO_TARGET/deploy_repos.sh ]]; then rm -f $LOCAL_REPO_TARGET/deploy_repos.sh;fi;
 cp $SW_DIR/deploy_repos.sh $LOCAL_REPO_TARGET/
-
-## Remove cm-scp_ses_deployment, cm-scp_caasp_deployment because these file needs to be copied seperately
-if [[ -e $LOCAL_REPO_TARGET/my-tool/cm-scp_ses_deployment ]]; then rm -f $LOCAL_REPO_TARGET/my-tool/cm-scp_ses_deployment;fi;
-if [[ -e $LOCAL_REPO_TARGET/my-tool/cm-scp_caasp_deployment ]]; then rm -f $LOCAL_REPO_TARGET/my-tool/cm-scp_caasp_deployment;fi;
 
 
 }
@@ -311,7 +311,7 @@ mv /srv/local_repo/$i /srv/tar_temp/local_repo/
 done
 
 # Move local_repo related files
-for i in  my-tool  utils;do
+for i in  my-tool utils keys ;do
 mv /srv/local_repo/$i /srv/tar_temp/local_repo/
 done
 
@@ -328,6 +328,42 @@ rmdir /srv/tar_temp
 
 
 }
+
+Tar_local_files () {
+
+if [[ $1 == "" ]]; then
+	echo "No parameter";
+	return 1;
+fi
+local FILES=$1
+
+
+cd /srv;
+
+echo "Check /srv/tar_temp, before delete operation"
+Debug rm -rf /srv/tar_temp;
+mkdir -p /srv/tar_temp/local_repo
+
+# Move local_repo related files
+for i in  "$@" ;do
+mv /srv/local_repo/$i /srv/tar_temp/local_repo/
+done
+
+cd /srv/tar_temp;
+local FILENAME=Files_$(date +%y%m%d)
+tar cvfz /srv/$FILENAME.tar.gz local_repo;
+md5sum /srv/$FILENAME.tar.gz > /srv/$FILENAME.md5
+
+cd /srv/;
+mv /srv/tar_temp/local_repo/* /srv/local_repo/ 2>/dev/null
+
+rmdir /srv/tar_temp/local_repo
+rmdir /srv/tar_temp
+
+
+}
+
+
 
 
 Tar_local_repo_CaaSP4 () {
@@ -391,10 +427,12 @@ rmdir /srv/tar_temp
 
 #Local_repo_config_deployment_sle15sp1
 
+## Tar files in directory local_repo. So all files will be under local_repo directory once tar files are extracted
 #Tar_local_repo sle15sp1
 #Tar_local_repo sles15sp1
 #Tar_local_repo slesap15sp1
 #Tar_local_repo ses6
 #Tar_local_repo_CaaSP4
 
+#Tar_local_files my-tool utils keys cert 
 
